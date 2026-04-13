@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     "google-adsense-account": "ca-pub-8237514940582521",
   },
   verification: {
-    google: "h4KL3vd6GWtZIROnPyLtY2tIYtEu7LKfR4NY5_Zqbvc",
+    google: "pEAChCoY3NqXiohCgZP7r1Y7sPE1wDrIbOIba3gNT4A",
   },
 };
 
