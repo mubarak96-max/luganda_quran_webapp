@@ -121,7 +121,10 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
             
             <div className="surah-actions">
               <div className="action-column">
-                <a href={surah.audioURL} download={`${surah.surahName}.m4a`} className="btn-primary">
+                <a 
+                  href={`/api/download?url=${encodeURIComponent(surah.audioURL)}&filename=${encodeURIComponent(`${surah.surahName}.m4a`)}`} 
+                  className="btn-primary"
+                >
                   <i className="fas fa-download"></i> Download Audio
                 </a>
                 <span className="translator-label">Translated by Sheikh Ahmad Nkata</span>
