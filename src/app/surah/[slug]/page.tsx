@@ -128,7 +128,7 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
               </div>
               <div className="action-column">
                 <Link 
-                  href={`/read/${surah.surahName.toLowerCase().replace(/ /g, "-")}-translated-by-sheikh-abdul-razak-matovu`} 
+                  href={`/read/${surah.surahIndex}-${surah.surahName.toLowerCase().replace(/ /g, "-")}-translated-by-sheikh-abdul-razak-matovu`} 
                   className="btn-secondary"
                 >
                   <i className="fas fa-book-open"></i> Read Luganda

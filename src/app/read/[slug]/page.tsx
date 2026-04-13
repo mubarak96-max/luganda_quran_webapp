@@ -8,17 +8,35 @@ import type { Metadata } from "next";
 
 const SUFFIX = "-translated-by-sheikh-abdul-razak-matovu";
 
+function loadAllSurahs() {
+  const filePath = path.join(process.cwd(), 'src/data/luganda_arabic_offline.json');
+  const fileData = fs.readFileSync(filePath, 'utf8');
+  return JSON.parse(fileData);
+}
+
+function findSurahFromSlug(slug: string, allSurahs: any[]) {
+  const slugPart = slug.replace(SUFFIX, "");
+
+  // Method 1: slug starts with chapter_id (e.g. "1-al-fatihah-...")
+  const idMatch = slugPart.match(/^(\d+)-/);
+  if (idMatch) {
+    const chapterId = parseInt(idMatch[1]);
+    const found = allSurahs.find((s: any) => s.chapter_id === chapterId);
+    if (found) return found;
+  }
+
+  // Method 2: fallback — match by slugified name
+  return allSurahs.find((s: any) =>
+    s.name_english.toLowerCase().replace(/ /g, "-") === slugPart
+  ) ?? null;
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const surahSlugPart = slug.replace(SUFFIX, "");
 
   try {
-    const filePath = path.join(process.cwd(), 'src/data/luganda_arabic_offline.json');
-    const fileData = fs.readFileSync(filePath, 'utf8');
-    const allSurahs = JSON.parse(fileData);
-    const surah = allSurahs.find((s: any) =>
-      s.name_english.toLowerCase().replace(/ /g, "-") === surahSlugPart
-    );
+    const allSurahs = loadAllSurahs();
+    const surah = findSurahFromSlug(slug, allSurahs);
 
     if (surah) {
       return {
@@ -34,22 +52,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
   } catch {}
 
-  // Fallback — convert slug back to a readable name for display
-  const name = surahSlugPart.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const fallbackName = slug.replace(SUFFIX, "").replace(/-/g, " ").replace(/^\d+ /, "").replace(/\b\w/g, (c) => c.toUpperCase());
   return {
-    title: `${name} Luganda Translation – Sheikh Abdurazak Matovu`,
-    description: `Read the Luganda translation of Surah ${name} from the Holy Quran, translated by Sheikh Abdurazak Matovu. Clear Arabic text and Luganda meaning.`,
+    title: `${fallbackName} Luganda Translation – Sheikh Abdurazak Matovu`,
+    description: `Read the Luganda translation of Surah ${fallbackName} from the Holy Quran, translated by Sheikh Abdurazak Matovu.`,
   };
 }
 
 export async function generateStaticParams() {
   try {
-    const filePath = path.join(process.cwd(), 'src/data/luganda_arabic_offline.json');
-    const fileData = fs.readFileSync(filePath, 'utf8');
-    const allSurahs = JSON.parse(fileData);
-    
+    const allSurahs = loadAllSurahs();
     return allSurahs.map((surah: any) => ({
-      slug: `${surah.name_english.toLowerCase().replace(/ /g, "-")}${SUFFIX}`
+      // Include chapter_id prefix so lookup is always reliable
+      slug: `${surah.chapter_id}-${surah.name_english.toLowerCase().replace(/ /g, "-")}${SUFFIX}`
     }));
   } catch (error) {
     console.error("Error generating static params for read pages:", error);
@@ -59,19 +74,12 @@ export async function generateStaticParams() {
 
 export default async function ReadPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  // Extract just the surah name part of the slug (remove the suffix)
-  const surahSlugPart = slug.replace(SUFFIX, "");
 
   let surah = null;
-  let allSurahs = [];
+  let allSurahs: any[] = [];
   try {
-    const filePath = path.join(process.cwd(), 'src/data/luganda_arabic_offline.json');
-    const fileData = fs.readFileSync(filePath, 'utf8');
-    allSurahs = JSON.parse(fileData);
-    // Match by generating a slug from the JSON name and comparing to the URL slug part
-    surah = allSurahs.find((s: any) =>
-      s.name_english.toLowerCase().replace(/ /g, "-") === surahSlugPart
-    );
+    allSurahs = loadAllSurahs();
+    surah = findSurahFromSlug(slug, allSurahs);
   } catch (error) {
     console.error("Error loading surah data:", error);
   }
@@ -93,7 +101,7 @@ export default async function ReadPage({ params }: { params: Promise<{ slug: str
   const prevSurah = allSurahs.find((s: any) => s.chapter_id === chapterId - 1);
   const nextSurah = allSurahs.find((s: any) => s.chapter_id === chapterId + 1);
 
-  const getSlug = (s: any) => `${s.name_english.toLowerCase().replace(/ /g, "-")}${SUFFIX}`;
+  const getSlug = (s: any) => `${s.chapter_id}-${s.name_english.toLowerCase().replace(/ /g, "-")}${SUFFIX}`;
 
   return (
     <>
@@ -128,7 +136,7 @@ export default async function ReadPage({ params }: { params: Promise<{ slug: str
 
           <div className="bismillah-container">
             {chapterId !== 1 && chapterId !== 9 && (
-              <p className="arabic-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+              <p className="arabic-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
             )}
           </div>
 
