@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
   } catch {}
 
-  // Fallback
-  const name = surahNameFromSlug.charAt(0).toUpperCase() + surahNameFromSlug.slice(1);
+  // Fallback — convert slug back to a readable name for display
+  const name = surahSlugPart.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   return {
     title: `${name} Luganda Translation – Sheikh Abdurazak Matovu`,
     description: `Read the Luganda translation of Surah ${name} from the Holy Quran, translated by Sheikh Abdurazak Matovu. Clear Arabic text and Luganda meaning.`,
