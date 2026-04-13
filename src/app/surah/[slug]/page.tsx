@@ -54,9 +54,24 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
   
   const surah = surahDoc.data();
   
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "AudioObject",
+    "name": `Surah ${surah.surahName} – Luganda Translation by Sheikh Nkata`,
+    "description": `Listen to Surah ${surah.surahName} (Surah ${surah.surahIndex}) translated in Luganda by Sheikh Ismail Sulaiman Nkata. High quality audio translation.`,
+    "inLanguage": "lg",
+    "encodingFormat": "audio/mpeg",
+    "url": `https://lugandaquran.online/surah/${slug}`,
+    "contentUrl": surah.audioURL,
+  };
+
   return (
     <>
       <Navbar />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <main className="surah-details-page" style={{ paddingTop: "140px", paddingBottom: "100px" }}>
         <div className="container">
           <Link href="/" className="back-link" style={{ marginBottom: "30px", display: "inline-block" }}>

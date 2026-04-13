@@ -16,7 +16,24 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
+
+// Server-side fetching utility
+import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
+
+export async function getSurahs() {
+  try {
+    const q = query(collection(db, "surah"), orderBy("surahIndex", "asc"), limit(114));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+  } catch (error) {
+    console.error("Error fetching surahs on server:", error);
+    return [];
+  }
+}
 
 export { app, auth, db, storage };

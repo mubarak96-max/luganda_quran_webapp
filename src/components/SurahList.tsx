@@ -15,14 +15,24 @@ interface Surah {
   nameArabic?: string;
 }
 
-const SurahList = ({ limitCount }: { limitCount?: number }) => {
-  const [surahs, setSurahs] = useState<Surah[]>([]);
-  const [loading, setLoading] = useState(true);
+const SurahList = ({ limitCount, initialData = [] }: { limitCount?: number; initialData?: Surah[] }) => {
+  const [surahs, setSurahs] = useState<Surah[]>(initialData);
+  const [loading, setLoading] = useState(initialData.length === 0);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchSurahs = async () => {
+      // If we already have initialData, we might still want to check cache or sync,
+      // but to follow SEO "don't fetch JS every time" for crawlers, we use initialData.
+      if (initialData.length > 0 && surahs.length === 0) {
+        setSurahs(initialData);
+        setLoading(false);
+      }
+
       try {
+        // Only fetch if we don't have surahs
+        if (surahs.length > 0) return;
+
         // 1. Check if we have cached data in localStorage
         const cachedSurahs = localStorage.getItem("luganda_quran_surahs");
         if (cachedSurahs) {
@@ -30,7 +40,7 @@ const SurahList = ({ limitCount }: { limitCount?: number }) => {
           if (parsedSurahs && parsedSurahs.length > 0) {
             setSurahs(parsedSurahs);
             setLoading(false);
-            return; // Skip Firebase if we have data
+            return;
           }
         }
 
@@ -39,7 +49,7 @@ const SurahList = ({ limitCount }: { limitCount?: number }) => {
         const querySnapshot = await getDocs(q);
         
         if (querySnapshot.empty) {
-          setError("No surahs found in the 'surah' collection. Please check the collection name in Firebase.");
+          setError("No surahs found.");
         } else {
           const fetchedSurahs = querySnapshot.docs.map((doc) => ({
             id: doc.id,
@@ -47,20 +57,19 @@ const SurahList = ({ limitCount }: { limitCount?: number }) => {
           })) as Surah[];
           
           setSurahs(fetchedSurahs);
-          // 2. Save to localStorage for next time
           localStorage.setItem("luganda_quran_surahs", JSON.stringify(fetchedSurahs));
           setError(null);
         }
       } catch (err) {
         console.error("Error fetching surahs: ", err);
-        setError("Failed to connect to Firebase. Please check your Firestore collection and permissions.");
+        setError("Failed to load surahs.");
       } finally {
         setLoading(false);
       }
     };
 
     fetchSurahs();
-  }, []);
+  }, [initialData, surahs.length]);
 
   const displaySurahs = limitCount ? surahs.slice(0, limitCount) : surahs;
 

@@ -16,13 +16,13 @@ export default function Footer() {
             <h4>Quick Links</h4>
             <ul>
               <li>
-                <a href="#features">Features</a>
+                <Link href="/privacy">Privacy Policy</Link>
               </li>
               <li>
-                <a href="#blog">Blog</a>
+                <Link href="/terms">Terms of Service</Link>
               </li>
               <li>
-                <a href="#download">Download</a>
+                <Link href="/contact">Contact</Link>
               </li>
             </ul>
           </div>

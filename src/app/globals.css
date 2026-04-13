@@ -1,3 +1,5 @@
+@import './legal.css';
+
 :root {
     --primary: #008080;
     --primary-dark: #006666;
@@ -951,6 +953,55 @@ ul {
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
+}
+
+/* SEO Content Section */
+.section-padding {
+    padding: 100px 0;
+}
+
+.seo-content {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    background: #fff;
+}
+
+.seo-block {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.seo-block:last-child {
+    border-bottom: none;
+}
+
+.seo-block h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.seo-block h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+}
+
+.seo-block p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .seo-block h1 { font-size: 1.5rem; }
+    .seo-block h2 { font-size: 1.25rem; }
+    .seo-block p { font-size: 1rem; }
 }
 
 .reading-footer-nav {
