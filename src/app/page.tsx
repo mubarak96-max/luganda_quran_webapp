@@ -108,7 +108,6 @@ export default async function Home() {
             </div>
           </div>
         </section>
-        </section>
 
         {/* FAQ Section with JSON-LD Schema */}
         <section className="faq-section section-padding" style={{ background: "#f9f9f9" }}>
