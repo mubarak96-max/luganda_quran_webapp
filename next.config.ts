@@ -9,7 +9,8 @@ const withPWA = withPWAInit({
 });
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  staticPageGenerationTimeout: 1000,
+  turbopack: {},
 };
 
 export default withPWA(nextConfig);

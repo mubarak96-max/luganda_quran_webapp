@@ -108,6 +108,102 @@ export default async function Home() {
             </div>
           </div>
         </section>
+        </section>
+
+        {/* FAQ Section with JSON-LD Schema */}
+        <section className="faq-section section-padding" style={{ background: "#f9f9f9" }}>
+          <div className="container" style={{ maxWidth: "800px" }}>
+            <h2 style={{ textAlign: "center", marginBottom: "50px", fontSize: "32px" }}>
+              Frequently Asked Questions
+            </h2>
+            <div className="faq-list">
+              {[
+                {
+                  q: "Who translated the Quran into Luganda?",
+                  a: "The audio Luganda Quran was recorded by Sheikh Ismail Sulaiman Nkata (Rahmatullāh ʿAlayh), one of Uganda's most respected Islamic scholars. The written translation is by Sheikh Abdurazak Matovu.",
+                },
+                {
+                  q: "Is the Luganda Quran free to listen to?",
+                  a: "Yes. All 114 surahs of the Quran are free to stream on lugandaquran.online — no account, no app, and no subscription required.",
+                },
+                {
+                  q: "Can I listen to the Luganda Quran on my phone?",
+                  a: "Yes. The site is fully mobile-friendly and works on any smartphone or tablet. You can also install it as an app directly from your browser — no app store required.",
+                },
+                {
+                  q: "Which surahs are available in Luganda?",
+                  a: "All 114 surahs of the Holy Quran are available in Luganda, from Surah Al-Fatiha (1) to Surah An-Nas (114), including popular surahs like Surah Al-Baqarah, Surah Yasin, Surah Al-Kahf, and Surah Al-Mulk.",
+                },
+                {
+                  q: "Who was Sheikh Ismail Sulaiman Nkata?",
+                  a: "Sheikh Nkata was a renowned Ugandan Islamic scholar and teacher at King Faisal Secondary School in Mityana. He dedicated his life to making the Quran understandable to Luganda-speaking Muslims. His complete Luganda audio Quran remains one of the most treasured Islamic resources in Uganda.",
+                },
+                {
+                  q: "Can I read the Luganda Quran text as well as listen?",
+                  a: "Yes. Each surah page has a 'Read Luganda' button that opens the full written Luganda translation by Sheikh Abdurazak Matovu, displayed alongside the original Arabic text.",
+                },
+              ].map((item, i) => (
+                <details key={i} className="faq-item">
+                  <summary className="faq-question">{item.q}</summary>
+                  <p className="faq-answer">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+
+          {/* FAQ JSON-LD Schema */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "Who translated the Quran into Luganda?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "The audio Luganda Quran was recorded by Sheikh Ismail Sulaiman Nkata (Rahmatullāh ʿAlayh), one of Uganda's most respected Islamic scholars. The written translation is by Sheikh Abdurazak Matovu.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Is the Luganda Quran free to listen to?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Yes. All 114 surahs of the Quran are free to stream on lugandaquran.online — no account, no app, and no subscription required.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Can I listen to the Luganda Quran on my phone?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Yes. The site is fully mobile-friendly and works on any smartphone or tablet. You can also install it as an app directly from your browser — no app store required.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Which surahs are available in Luganda?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "All 114 surahs of the Holy Quran are available in Luganda, from Surah Al-Fatiha (1) to Surah An-Nas (114), including popular surahs like Surah Al-Baqarah, Surah Yasin, Surah Al-Kahf, and Surah Al-Mulk.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Who was Sheikh Ismail Sulaiman Nkata?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Sheikh Nkata was a renowned Ugandan Islamic scholar and teacher at King Faisal Secondary School in Mityana. He dedicated his life to making the Quran understandable to Luganda-speaking Muslims.",
+                    },
+                  },
+                ],
+              }),
+            }}
+          />
+        </section>
       </main>
 
       <Footer />

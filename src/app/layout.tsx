@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+
 import { Outfit, Amiri } from "next/font/google";
 import "./globals.css";
 
@@ -14,13 +15,18 @@ const amiri = Amiri({
   variable: "--font-amiri",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#008080",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "Luganda Quran: Full Audio by Sheikh Sulaiman Nkata & Translation by Sheikh Abdurazak Matovu",
   description: "Get the ultimate Luganda Quran app. Featuring full Luganda Quran translation by Sheikh Sulaiman Nkata and the authentic Luganda Quran translation by Sheikh Abdurazak Matovu.",
   keywords: ["luganda audio quran sheikh sulaiman nkata", "luganda quran translation sheikh abdulrazak matovu", "nkata quran audio", "matovu luganda translation", "luganda quran app"],
   manifest: "/manifest.json",
-  themeColor: "#008080",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

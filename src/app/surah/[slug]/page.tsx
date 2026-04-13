@@ -8,11 +8,36 @@ import type { Metadata } from "next";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const surahNameSlug = slug.replace("-translated-in-luganda-quran-by-sheikh-nkata", "").replace(/-/g, " ");
-  
+  const surahNameFromSlug = slug
+    .replace("-translated-in-luganda-quran-by-sheikh-nkata", "")
+    .replace(/-/g, " ");
+
+  try {
+    const querySnapshot = await getDocs(collection(db, "surah"));
+    const surahDoc = querySnapshot.docs.find(
+      (doc) => doc.data().surahName.toLowerCase() === surahNameFromSlug.toLowerCase()
+    );
+
+    if (surahDoc) {
+      const surah = surahDoc.data();
+      return {
+        title: `Surah ${surah.surahName} (${surah.surahIndex}) in Luganda – Sheikh Ismail Sulaiman Nkata`,
+        description: `Listen to Surah ${surah.surahName} — Surah ${surah.surahIndex} of 114 — translated in Luganda by Sheikh Ismail Sulaiman Nkata. Free audio stream. ${surah.englishName ? `"${surah.englishName}"` : ""} with Luganda meaning explained.`,
+        openGraph: {
+          title: `Surah ${surah.surahName} Luganda Translation – Sheikh Nkata`,
+          description: `Free Luganda audio for Surah ${surah.surahName} (${surah.surahIndex}) by Sheikh Ismail Sulaiman Nkata.`,
+          type: "website",
+          url: `https://lugandaquran.online/surah/${slug}`,
+        },
+      };
+    }
+  } catch {}
+
+  // Fallback
+  const name = surahNameFromSlug.charAt(0).toUpperCase() + surahNameFromSlug.slice(1);
   return {
-    title: `${surahNameSlug.charAt(0).toUpperCase() + surahNameSlug.slice(1)} Translated in Luganda Quran by Sheikh Nkata`,
-    description: `Listen to and download ${surahNameSlug} Quran translation in Luganda by Sheikh Sulaiman Nkata. High quality audio and clear translation.`,
+    title: `Surah ${name} Luganda Translation – Sheikh Ismail Sulaiman Nkata`,
+    description: `Listen to Surah ${name} translated in Luganda by Sheikh Ismail Sulaiman Nkata. Free audio stream of all 114 Quran surahs in Luganda.`,
   };
 }
 

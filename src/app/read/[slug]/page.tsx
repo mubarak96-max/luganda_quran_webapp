@@ -10,12 +10,33 @@ const SUFFIX = "-translated-by-sheikh-abdul-razak-matovu";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const surahName = slug.replace(SUFFIX, "").replace(/-/g, " ");
-  const formattedName = surahName.charAt(0).toUpperCase() + surahName.slice(1);
-  
+  const surahNameFromSlug = slug.replace(SUFFIX, "").replace(/-/g, " ");
+
+  try {
+    const filePath = path.join(process.cwd(), 'src/data/luganda_arabic_offline.json');
+    const fileData = fs.readFileSync(filePath, 'utf8');
+    const allSurahs = JSON.parse(fileData);
+    const surah = allSurahs.find((s: any) => s.name_english.toLowerCase() === surahNameFromSlug.toLowerCase());
+
+    if (surah) {
+      return {
+        title: `Surah ${surah.name_english} (${surah.chapter_id}) Luganda Translation – Sheikh Abdurazak Matovu`,
+        description: `Read the complete Luganda translation of Surah ${surah.name_english} (${surah.name_arabic}) — ${surah.verses?.length || ""} ayahs. Translated by Sheikh Abdurazak Matovu. Clear Arabic text and Luganda meaning side by side.`,
+        openGraph: {
+          title: `Surah ${surah.name_english} Luganda – Sheikh Abdurazak Matovu`,
+          description: `Read Surah ${surah.name_english} in Luganda. Written translation by Sheikh Abdurazak Matovu. Surah ${surah.chapter_id} of 114.`,
+          type: "article",
+          url: `https://lugandaquran.online/read/${slug}`,
+        },
+      };
+    }
+  } catch {}
+
+  // Fallback
+  const name = surahNameFromSlug.charAt(0).toUpperCase() + surahNameFromSlug.slice(1);
   return {
-    title: `${formattedName} Luganda Translation - Sheikh Abdul Razak Matovu`,
-    description: `Read the Luganda translation of Surah ${formattedName} from the Holy Quran, translated by Sheikh Abdul Razak Matovu. Clear Arabic text and Luganda meaning.`,
+    title: `${name} Luganda Translation – Sheikh Abdurazak Matovu`,
+    description: `Read the Luganda translation of Surah ${name} from the Holy Quran, translated by Sheikh Abdurazak Matovu. Clear Arabic text and Luganda meaning.`,
   };
 }
 
