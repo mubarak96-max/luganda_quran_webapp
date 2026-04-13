@@ -15,17 +15,17 @@ export default function ContactPage() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    
+
     // Simple mailto fallback
-    const mailto = `mailto:mubarak96.max@gmail.com?subject=${encodeURIComponent(
+    const mailto = `mailto:mubarakmmm5@gmail.com?subject=${encodeURIComponent(
       subject || "Message from lugandaquran.online"
     )}&body=${encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\n\n${message}`
     )}`;
-    
+
     // In a real app, we'd use a server action or API call here
     window.location.href = mailto;
-    
+
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
@@ -52,7 +52,7 @@ export default function ContactPage() {
               <div className="contact-success-icon">✓</div>
               <h2>Message Prepared</h2>
               <p>
-                JazakAllah khair for reaching out. Your email client should have opened with the message ready. 
+                JazakAllah khair for reaching out. Your email client should have opened with the message ready.
                 Please click send to complete the process.
               </p>
               <a href="/" className="contact-back">
