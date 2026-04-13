@@ -10,13 +10,15 @@ const SUFFIX = "-translated-by-sheikh-abdul-razak-matovu";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const surahNameFromSlug = slug.replace(SUFFIX, "").replace(/-/g, " ");
+  const surahSlugPart = slug.replace(SUFFIX, "");
 
   try {
     const filePath = path.join(process.cwd(), 'src/data/luganda_arabic_offline.json');
     const fileData = fs.readFileSync(filePath, 'utf8');
     const allSurahs = JSON.parse(fileData);
-    const surah = allSurahs.find((s: any) => s.name_english.toLowerCase() === surahNameFromSlug.toLowerCase());
+    const surah = allSurahs.find((s: any) =>
+      s.name_english.toLowerCase().replace(/ /g, "-") === surahSlugPart
+    );
 
     if (surah) {
       return {
@@ -57,7 +59,8 @@ export async function generateStaticParams() {
 
 export default async function ReadPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const surahNameFromSlug = slug.replace(SUFFIX, "").replace(/-/g, " ");
+  // Extract just the surah name part of the slug (remove the suffix)
+  const surahSlugPart = slug.replace(SUFFIX, "");
 
   let surah = null;
   let allSurahs = [];
@@ -65,7 +68,10 @@ export default async function ReadPage({ params }: { params: Promise<{ slug: str
     const filePath = path.join(process.cwd(), 'src/data/luganda_arabic_offline.json');
     const fileData = fs.readFileSync(filePath, 'utf8');
     allSurahs = JSON.parse(fileData);
-    surah = allSurahs.find((s: any) => s.name_english.toLowerCase() === surahNameFromSlug.toLowerCase());
+    // Match by generating a slug from the JSON name and comparing to the URL slug part
+    surah = allSurahs.find((s: any) =>
+      s.name_english.toLowerCase().replace(/ /g, "-") === surahSlugPart
+    );
   } catch (error) {
     console.error("Error loading surah data:", error);
   }
