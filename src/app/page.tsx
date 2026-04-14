@@ -5,8 +5,8 @@ import Link from "next/link";
 import { getSurahs } from "@/lib/firebase";
 
 export const metadata = {
-  title: "Luganda Quran by Sheikh Nkata – Full Audio, All 114 Surahs | Free",
-  description: "Listen to the complete Quran translated in Luganda by Sheikh Ismail Sulaiman Nkata. All 114 surahs free to stream online. Also includes written translation by Sheikh Abdurazak Matovu.",
+  title: "Download Luganda Quran Translation Audio - All 114 Surahs Free",
+  description: "Download Luganda Quran translation audio and listen online. Access all 114 surahs translated by Sheikh Ismail Sulaiman Nkata, plus written Luganda translation by Sheikh Abdurazak Matovu.",
 };
 
 export default async function Home() {
@@ -99,6 +99,15 @@ export default async function Home() {
             </div>
 
             <div className="seo-block">
+              <h2>Download Luganda Quran Translation Audio</h2>
+              <p>
+                You can download Luganda Quran translation audio for every surah directly from each surah page.
+                This lets you listen offline when you have no internet connection while still accessing the same
+                authentic recordings by Sheikh Ismail Sulaiman Nkata.
+              </p>
+            </div>
+
+            <div className="seo-block">
               <h2>A free resource for the Ugandan Muslim community</h2>
               <p>
                 This website was built as a free resource for the Luganda-speaking Muslim community,
@@ -117,6 +126,10 @@ export default async function Home() {
             </h2>
             <div className="faq-list">
               {[
+                {
+                  q: "How can I download Luganda Quran translation audio?",
+                  a: "Open any surah page and click the Download Audio button. Your browser will save the Luganda Quran translation audio file so you can listen offline.",
+                },
                 {
                   q: "Who translated the Quran into Luganda?",
                   a: "The audio Luganda Quran was recorded by Sheikh Ismail Sulaiman Nkata (Rahmatullāh ʿAlayh), one of Uganda's most respected Islamic scholars. The written translation is by Sheikh Abdurazak Matovu.",
@@ -158,6 +171,14 @@ export default async function Home() {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
                 mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "How can I download Luganda Quran translation audio?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Open any surah page and click the Download Audio button. Your browser will save the Luganda Quran translation audio file so you can listen offline.",
+                    },
+                  },
                   {
                     "@type": "Question",
                     name: "Who translated the Quran into Luganda?",

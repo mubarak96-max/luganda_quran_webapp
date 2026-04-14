@@ -25,7 +25,15 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Luganda Quran: Full Audio by Sheikh Sulaiman Nkata & Translation by Sheikh Abdurazak Matovu",
   description: "Get the ultimate Luganda Quran app. Featuring full Luganda Quran translation by Sheikh Sulaiman Nkata and the authentic Luganda Quran translation by Sheikh Abdurazak Matovu.",
-  keywords: ["luganda audio quran sheikh sulaiman nkata", "luganda quran translation sheikh abdulrazak matovu", "nkata quran audio", "matovu luganda translation", "luganda quran app"],
+  keywords: [
+    "download luganda quran translation audio",
+    "luganda quran audio download",
+    "luganda audio quran sheikh sulaiman nkata",
+    "luganda quran translation sheikh abdulrazak matovu",
+    "nkata quran audio",
+    "matovu luganda translation",
+    "luganda quran app",
+  ],
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
