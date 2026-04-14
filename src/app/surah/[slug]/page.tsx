@@ -2,6 +2,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import DownloadAudioButton from "@/components/DownloadAudioButton";
 import Link from "next/link";
 import React from "react";
 import type { Metadata } from "next";
@@ -121,12 +122,10 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
             
             <div className="surah-actions">
               <div className="action-column">
-                <a 
-                  href={`/api/download?url=${encodeURIComponent(surah.audioURL)}&filename=${encodeURIComponent(`${surah.surahName}.m4a`)}`} 
-                  className="btn-primary"
-                >
-                  <i className="fas fa-download"></i> Download Audio
-                </a>
+                <DownloadAudioButton
+                  audioUrl={surah.audioURL}
+                  filename={`${surah.surahName}.m4a`}
+                />
                 <span className="translator-label">Translated by Sheikh Ahmad Nkata</span>
               </div>
               <div className="action-column">

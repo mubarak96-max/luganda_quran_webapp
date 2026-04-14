@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export const runtime = "nodejs";
+
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const url = searchParams.get("url");
@@ -12,13 +14,17 @@ export async function GET(request: NextRequest) {
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Failed to fetch: ${response.statusText}`);
+    if (!response.body) throw new Error("Empty download response body");
 
-    const blob = await response.blob();
     const headers = new Headers();
     headers.set("Content-Disposition", `attachment; filename="${filename}"`);
     headers.set("Content-Type", response.headers.get("Content-Type") || "audio/mpeg");
+    const contentLength = response.headers.get("Content-Length");
+    if (contentLength) {
+      headers.set("Content-Length", contentLength);
+    }
 
-    return new NextResponse(blob, {
+    return new NextResponse(response.body, {
       status: 200,
       headers,
     });
