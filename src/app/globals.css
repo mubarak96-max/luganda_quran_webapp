@@ -801,6 +801,7 @@ ul {
         font-size: 14px;
     }
 }
+
 .action-column {
     flex: 1;
     display: flex;
@@ -820,6 +821,7 @@ ul {
     font-weight: 500;
     text-align: center;
 }
+
 .loading {
     text-align: center;
     padding: 50px;
@@ -999,9 +1001,17 @@ ul {
 }
 
 @media (max-width: 768px) {
-    .seo-block h1 { font-size: 1.5rem; }
-    .seo-block h2 { font-size: 1.25rem; }
-    .seo-block p { font-size: 1rem; }
+    .seo-block h1 {
+        font-size: 1.5rem;
+    }
+
+    .seo-block h2 {
+        font-size: 1.25rem;
+    }
+
+    .seo-block p {
+        font-size: 1rem;
+    }
 }
 
 .reading-footer-nav {
@@ -1115,7 +1125,207 @@ ul {
         font-size: 0.95rem;
         padding: 16px 18px;
     }
+
     .faq-answer {
         padding: 0 18px 16px;
+    }
+}
+
+/* Fundraising Banner */
+.fundraising-section {
+    padding: 15px 0;
+}
+
+.fundraising-card {
+    background: linear-gradient(135deg, var(--primary) 0%, #004d4d 100%);
+    border-radius: 16px;
+    padding: 20px 25px;
+    color: #fff;
+    box-shadow: 0 10px 25px -12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+}
+
+.fundraising-pattern {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.fundraising-content {
+    position: relative;
+    z-index: 1;
+}
+
+.fundraising-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.fundraising-content h2 {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.fundraising-content p {
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0.95;
+    margin-bottom: 0;
+}
+
+.fundraising-content strong {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 14px;
+    color: var(--secondary-light);
+}
+
+.fundraising-cta {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    min-width: 220px;
+}
+
+.cta-title {
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    display: block;
+}
+
+.fundraising-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btn-fundraising {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--white);
+    color: var(--primary) !important;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-fundraising.whatsapp {
+    background: #25D366;
+    color: #fff !important;
+}
+
+.btn-fundraising:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.btn-fundraising.whatsapp:hover {
+    background: #128C7E;
+}
+
+.cta-note {
+    margin-top: 10px;
+    font-size: 11px;
+    opacity: 0.6;
+    line-height: 1.3;
+    display: block;
+}
+
+@media (max-width: 991px) {
+    .fundraising-card {
+        grid-template-columns: 1fr;
+        padding: 50px 30px;
+        text-align: center;
+    }
+
+    .fundraising-cta {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .fundraising-content h2 {
+        font-size: 28px;
+    }
+
+    .fundraising-content p {
+        font-size: 16px;
+    }
+}
+
+/* Fundraising Marquee */
+.fundraising-marquee {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    padding: 12px 0;
+    z-index: 2000;
+    overflow: hidden;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    font-weight: 700;
+    border-top: 2px solid var(--secondary);
+}
+
+.marquee-content {
+    display: flex;
+    white-space: nowrap;
+    width: max-content;
+    animation: marquee-animation 25s linear infinite;
+}
+
+.marquee-content span {
+    padding-right: 80px;
+    flex-shrink: 0;
+}
+
+@keyframes marquee-animation {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-25%);
+    }
+}
+
+@media (max-width: 600px) {
+    .fundraising-marquee {
+        font-size: 14px;
+        padding: 10px 0;
     }
 }

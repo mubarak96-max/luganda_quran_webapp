@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 import { Outfit, Amiri } from "next/font/google";
+import FundraisingMarquee from "@/components/FundraisingMarquee";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -72,6 +73,7 @@ export default function RootLayout({
       </head>
       <body className={`${outfit.variable} ${amiri.variable}`}>
         {children}
+        <FundraisingMarquee />
       </body>
     </html>
   );

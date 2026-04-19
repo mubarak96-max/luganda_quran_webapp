@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SurahList from "@/components/SurahList";
+import FundraisingBanner from "@/components/FundraisingBanner";
 import Link from "next/link";
 import { getSurahs } from "@/lib/firebase";
 
@@ -29,6 +30,8 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        <FundraisingBanner />
 
         {/* SEO Content Section */}
         <section className="seo-content section-padding">
