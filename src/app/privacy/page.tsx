@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Luganda Quran – Sheikh Nkata Audio",
+  title: "Privacy Policy | Luganda Quran – Sheikh Ismail Sulaiman Nkata Audio",
   description:
     "Privacy Policy for lugandaquran.online. Learn how we collect, use, and protect your information when you use our Luganda Quran audio website.",
 };
@@ -92,10 +92,6 @@ export default function PrivacyPolicyPage() {
                 as the last surah you listened to.
               </li>
               <li>
-                <strong>Google Analytics:</strong> To collect anonymous usage
-                statistics so we can understand how the site is being used.
-              </li>
-              <li>
                 <strong>Google AdSense:</strong> To serve relevant advertisements
                 based on your browsing activity. These are third-party cookies
                 controlled by Google.
@@ -150,27 +146,7 @@ export default function PrivacyPolicyPage() {
               for more information.
             </p>
 
-            <h2>6. Google Analytics</h2>
-            <p>
-              We use Google Analytics to analyse website traffic. Google
-              Analytics collects anonymous information about how visitors use our
-              website, including which pages are visited most often and how
-              visitors move between pages. This data is aggregated and does not
-              identify individual users.
-            </p>
-            <p>
-              You can opt out of Google Analytics tracking by installing the{" "}
-              <a
-                href="https://tools.google.com/dlpage/gaoptout"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Google Analytics Opt-out Browser Add-on
-              </a>
-              .
-            </p>
-
-            <h2>7. Third-Party Links</h2>
+            <h2>6. Third-Party Links</h2>
             <p>
               This website may contain links to external websites such as app
               stores or related Islamic resources. We are not responsible for the
@@ -178,7 +154,7 @@ export default function PrivacyPolicyPage() {
               their privacy policies before providing any personal information.
             </p>
 
-            <h2>8. Children&apos;s Privacy</h2>
+            <h2>7. Children&apos;s Privacy</h2>
             <p>
               This website is intended for general audiences and does not
               knowingly collect personal information from children under the age
@@ -186,7 +162,7 @@ export default function PrivacyPolicyPage() {
               information, please contact us and we will take steps to delete it.
             </p>
 
-            <h2>9. Data Security</h2>
+            <h2>8. Data Security</h2>
             <p>
               We take reasonable precautions to protect your information. However,
               no method of transmission over the internet is 100% secure. We
@@ -194,15 +170,15 @@ export default function PrivacyPolicyPage() {
               transmitted to or from this website.
             </p>
 
-            <h2>10. Your Rights</h2>
+            <h2>9. Your Rights</h2>
             <p>
               Depending on your location, you may have rights regarding your
               personal data, including the right to access, correct, or request
               deletion of information we hold about you. To exercise any of these
-              rights, please contact us using the details in Section 12.
+              rights, please contact us using the details in Section 11.
             </p>
 
-            <h2>11. Changes to This Policy</h2>
+            <h2>10. Changes to This Policy</h2>
             <p>
               We may update this Privacy Policy from time to time. When we do,
               we will update the &quot;last updated&quot; date at the top of this page.
@@ -210,7 +186,7 @@ export default function PrivacyPolicyPage() {
               about how we protect your information.
             </p>
 
-            <h2>12. Contact Us</h2>
+            <h2>11. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, please contact
               us at:{" "}

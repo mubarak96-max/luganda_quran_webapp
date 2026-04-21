@@ -1,4 +1,5 @@
 import { getSurahs } from "@/lib/firebase";
+import { createAudioSurahSlug, createReadSurahSlug } from "@/lib/surahSlugs";
 
 export default async function sitemap() {
   const baseUrl = "https://lugandaquran.online";
@@ -7,13 +8,13 @@ export default async function sitemap() {
   const allSurahs = await getSurahs();
 
   const surahUrls = allSurahs.map((surah: any) => ({
-    url: `${baseUrl}/surah/${surah.surahName.toLowerCase().replace(/ /g, "-")}-translated-in-luganda-quran-by-sheikh-nkata`,
+    url: `${baseUrl}/surah/${createAudioSurahSlug(surah.surahName)}`,
     lastModified: new Date(),
     priority: 0.8,
   }));
 
   const readingUrls = allSurahs.map((surah: any) => ({
-    url: `${baseUrl}/read/${surah.surahName.toLowerCase().replace(/ /g, "-")}-translated-by-sheikh-abdul-razak-matovu`,
+    url: `${baseUrl}/read/${createReadSurahSlug(surah.surahIndex, surah.surahName)}`,
     lastModified: new Date(),
     priority: 0.7,
   }));

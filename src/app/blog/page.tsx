@@ -7,7 +7,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Quran Translated  in Luganda",
-  description: "Read the latest news and information about the Luganda Quran, including the history of Sheikh Nkata and Sheikh Matovu's translations.",
+  description: "Read the latest news and information about the Luganda Quran, including the history of Sheikh Ismail Sulaiman Nkata and Sheikh Matovu's translations.",
 };
 
 export default function BlogIndexPage() {

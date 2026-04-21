@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="footer-about">
             <h3>Quran Luganda</h3>
             <p>
-              The definitive app for Luganda Quran Audio by Sheikh Sulaiman Nkata
+              A Luganda Quran audio website featuring Sheikh Ismail Sulaiman Nkata
               and Translation by Sheikh Abdurazak Matovu.
             </p>
           </div>

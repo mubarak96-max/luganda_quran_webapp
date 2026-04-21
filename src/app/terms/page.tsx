@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Luganda Quran – Sheikh Nkata Audio",
+  title: "Terms of Service | Luganda Quran – Sheikh Ismail Sulaiman Nkata Audio",
   description:
     "Terms of Service for lugandaquran.online. Read the terms and conditions governing your use of our free Luganda Quran audio website.",
 };
@@ -34,7 +34,7 @@ export default function TermsPage() {
 
             <h2>1. About This Website</h2>
             <p>
-              lugandaquran.online is a free, non-commercial Islamic resource
+              lugandaquran.online is a free Islamic resource
               providing access to the audio Quran translated in Luganda by Sheikh
               Ismail Sulaiman Nkata (Rahmatullāh ʿAlayh) and the written Luganda
               translation by Sheikh Abdurazak Matovu. The site is provided as a
@@ -95,10 +95,10 @@ export default function TermsPage() {
             <h2>4. Intellectual Property</h2>
             <p>
               The audio translations of the Quran by Sheikh Ismail Sulaiman Nkata
-              and the written translations by Sheikh Abdurazak Matovu are the
-              intellectual property of their respective estates and rights holders.
-              This website presents these works in good faith for the benefit of
-              the Muslim community.
+              and the written translations by Sheikh Abdurazak Matovu are provided
+              for personal, religious, and educational use by the Muslim community.
+              Please contact us if you have a question about content attribution,
+              permissions, or corrections.
             </p>
             <p>
               The website design, code, and original written content on this site

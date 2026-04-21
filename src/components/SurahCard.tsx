@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { createAudioSurahSlug } from "@/lib/surahSlugs";
 
 export interface SurahCardProps {
   index: number;
@@ -21,7 +22,7 @@ const SurahCard: React.FC<SurahCardProps> = ({
   isActive = false,
   lugandaName,
 }) => {
-  const slug = `${nameEnglish.toLowerCase().replace(/ /g, "-")}-translated-in-luganda-quran-by-sheikh-nkata`;
+  const slug = createAudioSurahSlug(nameEnglish);
 
   return (
     <Link href={`/surah/${slug}`} className={`surah-card ${isActive ? "active" : ""}`}>

@@ -59,7 +59,7 @@ export default async function Home() {
                 remains one of the most treasured Islamic resources in Uganda and among Baganda Muslims worldwide.
               </p>
               <p>
-                Sheikh Nkata taught at King Faisal Secondary School in Mityana and was widely respected for
+                Sheikh Ismail Sulaiman Nkata taught at King Faisal Secondary School in Mityana and was widely respected for
                 his deep knowledge, his clear teaching style, and his warm voice. His Luganda Quran translation
                 has helped hundreds of thousands of Muslims understand the meaning of Allah&apos;s words in
                 their mother tongue.
@@ -75,7 +75,7 @@ export default async function Home() {
                 understanding, reflection, and spiritual growth.
               </p>
               <p>
-                Sheikh Nkata&apos;s Luganda translation makes the Quran accessible to Muslims who may not have
+                Sheikh Ismail Sulaiman Nkata&apos;s Luganda translation makes the Quran accessible to Muslims who may not have
                 had the opportunity to study Arabic. From the opening surah Al-Fatiha to the final surah An-Nas,
                 every ayah is explained clearly in Luganda so that any listener can grasp its meaning.
               </p>
@@ -84,7 +84,7 @@ export default async function Home() {
             <div className="seo-block">
               <h2>What you will find on this site</h2>
               <p>
-                This site contains the full audio Luganda Quran by Sheikh Nkata — all 114 surahs, free to
+                This site contains the full audio Luganda Quran by Sheikh Ismail Sulaiman Nkata — all 114 surahs, free to
                 stream directly in your browser. You will also find the written Luganda translation by Sheikh
                 Abdurazak Matovu. Everything is mobile-friendly and works on any phone, tablet, or computer
                 without any app installation.
@@ -92,7 +92,7 @@ export default async function Home() {
             </div>
 
             <div className="seo-block">
-              <h2>How to listen to Sheikh Nkata&apos;s Luganda Quran</h2>
+              <h2>How to listen to Sheikh Ismail Sulaiman Nkata&apos;s Luganda Quran</h2>
               <p>
                 From the homepage, tap or click on any surah to open it and start playing the audio. You can
                 also visit the full surahs page to browse all 114 surahs. The audio quality is clear and
@@ -151,7 +151,7 @@ export default async function Home() {
                 },
                 {
                   q: "Who was Sheikh Ismail Sulaiman Nkata?",
-                  a: "Sheikh Nkata was a renowned Ugandan Islamic scholar and teacher at King Faisal Secondary School in Mityana. He dedicated his life to making the Quran understandable to Luganda-speaking Muslims. His complete Luganda audio Quran remains one of the most treasured Islamic resources in Uganda.",
+                  a: "Sheikh Ismail Sulaiman Nkata was a renowned Ugandan Islamic scholar and teacher at King Faisal Secondary School in Mityana. He dedicated his life to making the Quran understandable to Luganda-speaking Muslims. His complete Luganda audio Quran remains one of the most treasured Islamic resources in Uganda.",
                 },
                 {
                   q: "Can I read the Luganda Quran text as well as listen?",
@@ -219,7 +219,7 @@ export default async function Home() {
                     name: "Who was Sheikh Ismail Sulaiman Nkata?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: "Sheikh Nkata was a renowned Ugandan Islamic scholar and teacher at King Faisal Secondary School in Mityana. He dedicated his life to making the Quran understandable to Luganda-speaking Muslims.",
+                      text: "Sheikh Ismail Sulaiman Nkata was a renowned Ugandan Islamic scholar and teacher at King Faisal Secondary School in Mityana. He dedicated his life to making the Quran understandable to Luganda-speaking Muslims.",
                     },
                   },
                 ],

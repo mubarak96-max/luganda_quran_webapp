@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Luganda Quran Audio',
     short_name: 'Luganda Quran',
-    description: 'Listen to the Quran translated in Luganda by Sheikh Sulaiman Nkata',
+    description: 'Listen to the Quran translated in Luganda by Sheikh Ismail Sulaiman Nkata',
     start_url: '/',
     display: 'standalone',
     background_color: '#FDFDFD',

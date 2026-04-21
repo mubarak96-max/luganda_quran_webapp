@@ -5,8 +5,12 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import React from "react";
 import type { Metadata } from "next";
-
-const SUFFIX = "-translated-by-sheikh-abdul-razak-matovu";
+import {
+  createReadSurahSlug,
+  READ_SURAH_SUFFIX,
+  slugifySurahName,
+  stripSuffix,
+} from "@/lib/surahSlugs";
 
 function loadAllSurahs() {
   const filePath = path.join(process.cwd(), 'src/data/luganda_arabic_offline.json');
@@ -15,7 +19,7 @@ function loadAllSurahs() {
 }
 
 function findSurahFromSlug(slug: string, allSurahs: any[]) {
-  const slugPart = slug.replace(SUFFIX, "");
+  const slugPart = stripSuffix(slug, READ_SURAH_SUFFIX);
 
   // Method 1: slug starts with chapter_id (e.g. "1-al-fatihah-...")
   const idMatch = slugPart.match(/^(\d+)-/);
@@ -26,9 +30,9 @@ function findSurahFromSlug(slug: string, allSurahs: any[]) {
   }
 
   // Method 2: fallback — match by slugified name
-  return allSurahs.find((s: any) =>
-    s.name_english.toLowerCase().replace(/ /g, "-") === slugPart
-  ) ?? null;
+  const nameSlug = slugifySurahName(slugPart.replace(/^\d+-/, ""));
+
+  return allSurahs.find((s: any) => slugifySurahName(s.name_english) === nameSlug) ?? null;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -46,13 +50,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           title: `Surah ${surah.name_english} Luganda – Sheikh Abdurazak Matovu`,
           description: `Read Surah ${surah.name_english} in Luganda. Written translation by Sheikh Abdurazak Matovu. Surah ${surah.chapter_id} of 114.`,
           type: "article",
-          url: `https://lugandaquran.online/read/${slug}`,
+          url: `https://lugandaquran.online/read/${createReadSurahSlug(surah.chapter_id, surah.name_english)}`,
         },
       };
     }
   } catch {}
 
-  const fallbackName = slug.replace(SUFFIX, "").replace(/-/g, " ").replace(/^\d+ /, "").replace(/\b\w/g, (c) => c.toUpperCase());
+  const fallbackName = stripSuffix(slug, READ_SURAH_SUFFIX).replace(/-/g, " ").replace(/^\d+ /, "").replace(/\b\w/g, (c) => c.toUpperCase());
   return {
     title: `${fallbackName} Luganda Translation – Sheikh Abdurazak Matovu`,
     description: `Read the Luganda translation of Surah ${fallbackName} from the Holy Quran, translated by Sheikh Abdurazak Matovu.`,
@@ -64,7 +68,7 @@ export async function generateStaticParams() {
     const allSurahs = loadAllSurahs();
     return allSurahs.map((surah: any) => ({
       // Include chapter_id prefix so lookup is always reliable
-      slug: `${surah.chapter_id}-${surah.name_english.toLowerCase().replace(/ /g, "-")}${SUFFIX}`
+      slug: createReadSurahSlug(surah.chapter_id, surah.name_english),
     }));
   } catch (error) {
     console.error("Error generating static params for read pages:", error);
@@ -101,7 +105,7 @@ export default async function ReadPage({ params }: { params: Promise<{ slug: str
   const prevSurah = allSurahs.find((s: any) => s.chapter_id === chapterId - 1);
   const nextSurah = allSurahs.find((s: any) => s.chapter_id === chapterId + 1);
 
-  const getSlug = (s: any) => `${s.chapter_id}-${s.name_english.toLowerCase().replace(/ /g, "-")}${SUFFIX}`;
+  const getSlug = (s: any) => createReadSurahSlug(s.chapter_id, s.name_english);
 
   return (
     <>

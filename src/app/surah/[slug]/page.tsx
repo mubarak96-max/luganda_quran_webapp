@@ -6,17 +6,27 @@ import DownloadAudioButton from "@/components/DownloadAudioButton";
 import Link from "next/link";
 import React from "react";
 import type { Metadata } from "next";
+import {
+  AUDIO_SURAH_SUFFIX,
+  createAudioSurahSlug,
+  createReadSurahSlug,
+  slugifySurahName,
+  stripSuffix,
+} from "@/lib/surahSlugs";
+
+function getSurahNameSlug(slug: string) {
+  return slugifySurahName(stripSuffix(slug, AUDIO_SURAH_SUFFIX).replace(/^\d+-/, ""));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const surahNameFromSlug = slug
-    .replace("-translated-in-luganda-quran-by-sheikh-nkata", "")
-    .replace(/-/g, " ");
+  const surahNameFromSlug = stripSuffix(slug, AUDIO_SURAH_SUFFIX).replace(/^\d+-/, "").replace(/-/g, " ");
+  const surahSlugFromUrl = getSurahNameSlug(slug);
 
   try {
     const querySnapshot = await getDocs(collection(db, "surah"));
     const surahDoc = querySnapshot.docs.find(
-      (doc) => doc.data().surahName.toLowerCase() === surahNameFromSlug.toLowerCase()
+      (doc) => slugifySurahName(doc.data().surahName) === surahSlugFromUrl
     );
 
     if (surahDoc) {
@@ -25,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         title: `Surah ${surah.surahName} (${surah.surahIndex}) in Luganda – Sheikh Ismail Sulaiman Nkata`,
         description: `Listen to Surah ${surah.surahName} — Surah ${surah.surahIndex} of 114 — translated in Luganda by Sheikh Ismail Sulaiman Nkata. Free audio stream. ${surah.englishName ? `"${surah.englishName}"` : ""} with Luganda meaning explained.`,
         openGraph: {
-          title: `Surah ${surah.surahName} Luganda Translation – Sheikh Nkata`,
+          title: `Surah ${surah.surahName} Luganda Translation – Sheikh Ismail Sulaiman Nkata`,
           description: `Free Luganda audio for Surah ${surah.surahName} (${surah.surahIndex}) by Sheikh Ismail Sulaiman Nkata.`,
           type: "website",
           url: `https://lugandaquran.online/surah/${slug}`,
@@ -47,7 +57,7 @@ export async function generateStaticParams() {
     const querySnapshot = await getDocs(collection(db, "surah"));
     return querySnapshot.docs.map((doc) => {
       const data = doc.data();
-      const slug = `${data.surahName.toLowerCase().replace(/ /g, "-")}-translated-in-luganda-quran-by-sheikh-nkata`;
+      const slug = createAudioSurahSlug(data.surahName);
       return { slug };
     });
   } catch (error) {
@@ -60,13 +70,14 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
   const { slug } = await params;
   
   // Extract the surah name from the slug
-  const surahNameFromSlug = slug.replace("-translated-in-luganda-quran-by-sheikh-nkata", "").replace(/-/g, " ");
+  const surahNameFromSlug = stripSuffix(slug, AUDIO_SURAH_SUFFIX).replace(/^\d+-/, "").replace(/-/g, " ");
+  const surahSlugFromUrl = getSurahNameSlug(slug);
 
   // Fetch all surahs and find the matching one (simplified lookup for SEO slug)
   const querySnapshot = await getDocs(collection(db, "surah"));
   const surahDoc = querySnapshot.docs.find(doc => {
     const data = doc.data();
-    return data.surahName.toLowerCase() === surahNameFromSlug.toLowerCase();
+    return slugifySurahName(data.surahName) === surahSlugFromUrl;
   });
 
   if (!surahDoc) {
@@ -83,7 +94,7 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
   const schema = {
     "@context": "https://schema.org",
     "@type": "AudioObject",
-    "name": `Surah ${surah.surahName} – Luganda Translation by Sheikh Nkata`,
+    "name": `Surah ${surah.surahName} – Luganda Translation by Sheikh Ismail Sulaiman Nkata`,
     "description": `Listen to Surah ${surah.surahName} (Surah ${surah.surahIndex}) translated in Luganda by Sheikh Ismail Sulaiman Nkata. High quality audio translation.`,
     "inLanguage": "lg",
     "encodingFormat": "audio/mpeg",
@@ -126,11 +137,11 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
                   audioUrl={surah.audioURL}
                   filename={`${surah.surahName}.m4a`}
                 />
-                <span className="translator-label">Translated by Sheikh Ahmad Nkata</span>
+                <span className="translator-label">Translated by Sheikh Ismail Sulaiman Nkata</span>
               </div>
               <div className="action-column">
                 <Link 
-                  href={`/read/${surah.surahIndex}-${surah.surahName.toLowerCase().replace(/ /g, "-")}-translated-by-sheikh-abdul-razak-matovu`} 
+                  href={`/read/${createReadSurahSlug(surah.surahIndex, surah.surahName)}`}
                   className="btn-secondary"
                 >
                   <i className="fas fa-book-open"></i> Read Luganda

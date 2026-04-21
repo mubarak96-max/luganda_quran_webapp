@@ -7,7 +7,7 @@ import { getSurahs } from "@/lib/firebase";
 
 export const metadata = {
   title: "Download Luganda Quran Translation Audio - Browse All Surahs",
-  description: "Browse all 114 surahs and download Luganda Quran translation audio by Sheikh Sulaiman Nkata. Listen online or save each surah for offline listening.",
+  description: "Browse all 114 surahs and download Luganda Quran translation audio by Sheikh Ismail Sulaiman Nkata. Listen online or save each surah for offline listening.",
 };
 
 export default async function AllSurahsPage() {
