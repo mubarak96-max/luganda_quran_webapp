@@ -6,8 +6,8 @@ import Link from "next/link";
 import { getSurahs } from "@/lib/firebase";
 
 export const metadata = {
-  title: "Download Luganda Quran Translation Audio - All 114 Surahs Free",
-  description: "Download Luganda Quran translation audio and listen online. Access all 114 surahs translated by Sheikh Ismail Sulaiman Nkata, plus written Luganda translation by Sheikh Abdurazak Matovu.",
+  title: "Download Complete Luganda Quran Translation Audio - All 114 Surahs",
+  description: "Download Complete Luganda Quran translation audio and listen online. Access all 114 surahs translated by Sheikh Ismail Sulaiman Nkata, plus written Luganda translation by Sheikh Abdurazak Matovu.",
 };
 
 export default async function Home() {
@@ -21,9 +21,9 @@ export default async function Home() {
       <main className="main-content">
         <section id="surahs" style={{ padding: "140px 0 60px 0" }}>
           <div className="container">
-            <h2 style={{ textAlign: "center", marginBottom: "50px", fontSize: "39px" }}>Full Quran in Luganda</h2>
+            <h2 style={{ textAlign: "center", marginBottom: "50px", fontSize: "35px" }}>Full Quran in Luganda</h2>
             <SurahList limitCount={10} initialData={initialSurahs} />
-            <div style={{ textAlign: "center", marginTop: "50px" }}>
+            <div style={{ textAlign: "center", marginTop: "43px" }}>
               <Link href="/surahs" className="btn-secondary">
                 See All 114 Surahs <i className="fas fa-arrow-right"></i>
               </Link>
@@ -37,10 +37,9 @@ export default async function Home() {
         <section className="seo-content section-padding">
           <div className="container">
             <div className="seo-block">
-              <h1>Luganda Quran by Sheikh Ismail Sulaiman Nkata</h1>
+              <h1>Full Luganda Quran Translated by Sheikh Ismail Sulaiman Nkata</h1>
               <p>
-                Welcome to the home of the complete Quran translated in Luganda — the language of the
-                Baganda people of Uganda. This website gives you free access to all 114 surahs of the
+                Welcome to the home of the complete Quran translated in Luganda. This website gives you free access to all 114 surahs of the
                 Noble Quran, audio translated into Luganda by the late Sheikh Ismail Sulaiman Nkata,
                 and the written Luganda translation by Sheikh Abdurazak Matovu.
               </p>
