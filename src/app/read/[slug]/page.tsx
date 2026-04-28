@@ -144,13 +144,19 @@ export default async function ReadPage({ params }: { params: Promise<{ slug: str
             )}
           </div>
 
-          <div className="verses-container">
+          <div className="verses-content-flow" style={{ maxWidth: "900px", margin: "0 auto" }}>
             {surah.verses.map((v: any) => (
-              <div key={v.verse} className="verse-item">
-                <div className="verse-badge">{v.verse}</div>
-                <div className="verse-content">
-                  <p className="verse-arabic" dir="rtl">{v.arabic}</p>
-                  <p className="verse-luganda">{v.luganda}</p>
+              <div key={v.verse} className="verse-row-simple" style={{ marginBottom: "30px", paddingBottom: "20px", borderBottom: "1px solid #fafafa" }}>
+                <div className="verse-number-simple" style={{ color: "var(--primary)", fontWeight: "700", marginBottom: "10px" }}>
+                  Verse {v.verse}
+                </div>
+                <div className="verse-body">
+                  <p className="verse-arabic" dir="rtl" style={{ fontSize: "26px", marginBottom: "15px", lineHeight: "1.8", textAlign: "right" }}>
+                    {v.arabic}
+                  </p>
+                  <p className="verse-luganda" style={{ fontSize: "18px", lineHeight: "1.7", color: "#333" }}>
+                    {v.luganda}
+                  </p>
                 </div>
               </div>
             ))}

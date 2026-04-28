@@ -115,48 +115,41 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
             <i className="fas fa-arrow-left"></i> Back to all surahs
           </Link>
 
-          <div className="surah-detail-card">
-            <div className="surah-header">
-              <div className="surah-index-big">
-                <span>{surah.surahIndex}</span>
-              </div>
+          <div className="surah-details-content">
+            <div className="surah-header-simple" style={{ marginBottom: "40px" }}>
               <div className="surah-titles">
-                <h1>{surah.surahName}</h1>
-                <p className="translation">{surah.englishName}</p>
-                <p className="luganda">{surah.lugandaName}</p>
-              </div>
-              <div className="surah-arabic-title">
-                {surah.nameArabic && <h2 className="arabic-text-big">{surah.nameArabic}</h2>}
-                <span className="badge">{surah.location}</span>
+                <span className="badge" style={{ marginBottom: "10px", display: "inline-block" }}>Surah {surah.surahIndex}</span>
+                <h1 style={{ fontSize: "48px", marginBottom: "10px" }}>{surah.surahName}</h1>
+                <p className="translation" style={{ fontSize: "20px", color: "var(--gray)", marginBottom: "5px" }}>{surah.englishName} — {surah.lugandaName}</p>
+                {surah.nameArabic && <h2 className="arabic-text-big" style={{ marginTop: "20px", fontSize: "56px" }}>{surah.nameArabic}</h2>}
+                <span className="badge" style={{ marginTop: "10px" }}>{surah.location}</span>
               </div>
             </div>
 
-            <div className="surah-actions">
-              <div className="action-column">
+            <div className="surah-actions-simple" style={{ display: "flex", gap: "20px", marginBottom: "50px", flexWrap: "wrap" }}>
+              <div className="action-column-simple">
                 <DownloadAudioButton
                   audioUrl={surah.audioURL}
                   filename={`${surah.surahName}.m4a`}
                 />
-                <span className="translator-label">Translated by Sheikh Ismail Sulaiman Nkata</span>
+                <p className="translator-label" style={{ marginTop: "10px" }}>Translated by Sheikh Ismail Sulaiman Nkata</p>
               </div>
-              <div className="action-column">
+              <div className="action-column-simple">
                 <Link
                   href={`/read/${createReadSurahSlug(surah.surahIndex, surah.surahName)}`}
                   className="btn-secondary"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "14px 32px", borderRadius: "50px", fontWeight: "700" }}
                 >
                   <i className="fas fa-book-open"></i> Read Luganda
                 </Link>
-                <span className="translator-label">Translated by Sheikh Abdul Razak Matovu</span>
+                <p className="translator-label" style={{ marginTop: "10px" }}>Translated by Sheikh Abdul Razak Matovu</p>
               </div>
             </div>
 
             {surah.surahTheme && (
-              <div className="surah-theme-box">
-                <div className="theme-header">
-                  <i className="fas fa-lightbulb"></i>
-                  <span>Surah Theme</span>
-                </div>
-                <div className="theme-content">
+              <div className="surah-theme-section" style={{ borderTop: "1px solid #eee", paddingTop: "40px" }}>
+                <h2 style={{ marginBottom: "25px", fontSize: "28px", color: "var(--primary)" }}>Surah Context</h2>
+                <div className="theme-text-normal" style={{ fontSize: "19px", lineHeight: "1.8", color: "#333", whiteSpace: "pre-wrap" }}>
                   {surah.surahTheme}
                 </div>
               </div>

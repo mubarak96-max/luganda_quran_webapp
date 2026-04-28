@@ -568,29 +568,18 @@ ul {
 }
 
 .surahs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
 .surah-card {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    padding: 20px;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
     display: flex;
     align-items: center;
     gap: 20px;
     transition: all 0.3s ease;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.surah-card:hover {
-    border-color: var(--primary);
-    box-shadow: 0 5px 15px rgba(0, 128, 128, 0.05);
-    transform: translateY(-2px);
 }
 
 /* Active card style from image */
@@ -681,11 +670,10 @@ ul {
 
 /* Surah Detail Page */
 .surah-detail-card {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 24px;
-    padding: 40px;
-    box-shadow: var(--shadow);
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
 }
 
 .surah-header {
@@ -1084,9 +1072,10 @@ ul {
 }
 
 .faq-item {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 12px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
     overflow: hidden;
     transition: box-shadow 0.2s;
 }
@@ -1347,10 +1336,10 @@ ul {
 /* Surah Theme Box */
 .surah-theme-box {
     margin-top: 35px;
-    padding: 25px;
-    background: linear-gradient(135deg, rgba(0, 128, 128, 0.03) 0%, rgba(184, 134, 11, 0.03) 100%);
-    border: 1px solid rgba(0, 128, 128, 0.1);
-    border-radius: 20px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
 }
 
 .theme-header {
