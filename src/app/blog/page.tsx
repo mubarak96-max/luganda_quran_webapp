@@ -48,6 +48,10 @@ export default function BlogIndexPage() {
                 }}>
                   <div style={{ padding: "30px", flexGrow: 1, display: "flex", flexDirection: "column" }}>
                     <h2 style={{ fontSize: "1.5rem", marginBottom: "15px", lineHeight: "1.3" }}>{post.title}</h2>
+                    <div style={{ display: "flex", gap: "15px", fontSize: "0.85rem", color: "#888", marginBottom: "15px" }}>
+                      <span><i className="fas fa-user"></i> Mubarak Mutesasira</span>
+                      {post.publishedAt && <span><i className="fas fa-calendar"></i> {post.publishedAt}</span>}
+                    </div>
                     <p style={{ color: "#666", marginBottom: "20px", flexGrow: 1 }}>{post.description.substring(0, 120)}...</p>
                     <span style={{
                       color: "var(--primary)",

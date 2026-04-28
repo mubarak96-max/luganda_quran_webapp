@@ -16,7 +16,10 @@ export default function Footer() {
             <h4>Quick Links</h4>
             <ul>
               <li>
-                <Link href="/blog">Blog Articles</Link>
+                <Link href="/blog">Blog</Link>
+              </li>
+              <li>
+                <Link href="/about">About</Link>
               </li>
               <li>
                 <Link href="/privacy">Privacy Policy</Link>

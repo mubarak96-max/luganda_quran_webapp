@@ -53,6 +53,12 @@ export function BlogArticlePage({
             <i className="fas fa-arrow-left"></i> Back to Blog
           </Link>
           <h1>{post.title}</h1>
+          <div className="blog-meta" style={{ marginBottom: "40px", color: "#666", display: "flex", gap: "20px", fontSize: "0.95rem" }}>
+            <span><i className="fas fa-user" style={{ marginRight: "8px" }}></i> Mubarak Mutesasira</span>
+            {post.publishedAt && (
+              <span><i className="fas fa-calendar" style={{ marginRight: "8px" }}></i> {new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            )}
+          </div>
           <div
             className="blog-text"
             dangerouslySetInnerHTML={{ __html: content }}

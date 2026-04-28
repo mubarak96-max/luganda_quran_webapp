@@ -93,6 +93,20 @@ ul {
     color: var(--primary);
 }
 
+.nav-cta .btn-primary {
+    font-size: 15px;
+    padding: 12px 24px !important;
+}
+
+@media (max-width: 992px) {
+    .nav-cta {
+        width: 100%;
+    }
+    .nav-cta .btn-primary {
+        width: 100%;
+    }
+}
+
 .btn-primary {
     background: var(--primary);
     color: var(--white) !important;

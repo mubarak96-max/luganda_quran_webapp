@@ -70,6 +70,10 @@ export default function ContactPage() {
 
               <div className="contact-info-cards">
                 <div className="contact-info-card">
+                  <span className="contact-info-label">Managed By</span>
+                  <span>Mubarak Mutesasira</span>
+                </div>
+                <div className="contact-info-card">
                   <span className="contact-info-label">Website</span>
                   <span>lugandaquran.online</span>
                 </div>
@@ -80,37 +84,42 @@ export default function ContactPage() {
               </div>
 
               <form onSubmit={handleSubmit} className="contact-form">
-                <div className="form-group">
-                  <label htmlFor="name">Your name</label>
-                  <input
-                    id="name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="e.g. Musa Abdullah"
-                    required
-                  />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                  <div className="form-group">
+                    <label htmlFor="name" style={{ display: "block", marginBottom: "8px", fontWeight: "600" }}>Your name</label>
+                    <input
+                      id="name"
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="e.g. Musa Abdullah"
+                      required
+                      style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ddd" }}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="email" style={{ display: "block", marginBottom: "8px", fontWeight: "600" }}>Email address</label>
+                    <input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="e.g. musa@email.com"
+                      required
+                      style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ddd" }}
+                    />
+                  </div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">Email address</label>
-                  <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="e.g. musa@email.com"
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="subject">Subject</label>
+                <div className="form-group" style={{ marginTop: "20px" }}>
+                  <label htmlFor="subject" style={{ display: "block", marginBottom: "8px", fontWeight: "600" }}>Subject</label>
                   <select
                     id="subject"
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     required
+                    style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ddd", background: "#fff" }}
                   >
                     <option value="">Select a subject...</option>
                     <option value="General question">General question</option>
@@ -124,8 +133,8 @@ export default function ContactPage() {
                   </select>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="message">Message</label>
+                <div className="form-group" style={{ marginTop: "20px" }}>
+                  <label htmlFor="message" style={{ display: "block", marginBottom: "8px", fontWeight: "600" }}>Message</label>
                   <textarea
                     id="message"
                     value={message}
@@ -133,12 +142,30 @@ export default function ContactPage() {
                     rows={5}
                     placeholder="Write your message here..."
                     required
+                    style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ddd" }}
                   />
                 </div>
 
-                <button type="submit" className="contact-submit" disabled={loading}>
-                  {loading ? "Preparing..." : "Send message"}
+                <button
+                  type="submit"
+                  className="contact-submit"
+                  disabled={loading}
+                  style={{
+                    marginTop: "30px",
+                    width: "100%",
+                    padding: "15px",
+                    background: "var(--primary)",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "50px",
+                    fontWeight: "700",
+                    cursor: "pointer",
+                    boxShadow: "0 4px 15px rgba(0, 128, 128, 0.2)"
+                  }}
+                >
+                  {loading ? "Preparing message..." : "Send Message via Email"}
                 </button>
+
               </form>
             </div>
           )}

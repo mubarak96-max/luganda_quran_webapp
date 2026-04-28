@@ -40,9 +40,24 @@ export default function Navbar() {
           <i className="fas fa-mosque"></i>
           <span>Quran Luganda</span>
         </Link>
-        <ul className="nav-links">
+        <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
           <li>
-            <Link href="/">
+            <Link href="/blog" onClick={() => setIsMenuOpen(false)}>
+              Blog
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" onClick={() => setIsMenuOpen(false)}>
+              About
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+              Contact
+            </Link>
+          </li>
+          <li className="nav-cta">
+            <Link href="/" className="btn-primary" style={{ padding: "10px 20px" }} onClick={() => setIsMenuOpen(false)}>
               Download Quran
             </Link>
           </li>
