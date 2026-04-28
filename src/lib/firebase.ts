@@ -3,6 +3,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore, collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
+export type SurahRecord = {
+  id: string;
+  surahIndex: number;
+  surahName: string;
+  [key: string]: unknown;
+};
+
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -20,14 +27,23 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 
 // Server-side fetching utility
-export async function getSurahs() {
+export async function getSurahs(): Promise<SurahRecord[]> {
   try {
     const q = query(collection(db, "surah"), orderBy("surahIndex", "asc"), limit(114));
     const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    return querySnapshot.docs.map((doc) => {
+      const data = doc.data() as Partial<SurahRecord>;
+
+      return {
+        ...data,
+        id: doc.id,
+        surahIndex:
+          typeof data.surahIndex === "number"
+            ? data.surahIndex
+            : Number(data.surahIndex ?? 0),
+        surahName: typeof data.surahName === "string" ? data.surahName : "",
+      };
+    });
   } catch (error) {
     console.error("Error fetching surahs on server:", error);
     return [];
