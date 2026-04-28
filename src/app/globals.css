@@ -1329,3 +1329,38 @@ ul {
         padding: 10px 0;
     }
 }
+
+/* Surah Theme Box */
+.surah-theme-box {
+    margin-top: 35px;
+    padding: 25px;
+    background: linear-gradient(135deg, rgba(0, 128, 128, 0.03) 0%, rgba(184, 134, 11, 0.03) 100%);
+    border: 1px solid rgba(0, 128, 128, 0.1);
+    border-radius: 20px;
+}
+
+.theme-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.theme-content {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    white-space: pre-wrap;
+}
+
+@media (max-width: 600px) {
+    .surah-theme-box {
+        padding: 20px;
+        margin-top: 25px;
+    }
+}

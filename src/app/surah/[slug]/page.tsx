@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         },
       };
     }
-  } catch {}
+  } catch { }
 
   // Fallback
   const name = surahNameFromSlug.charAt(0).toUpperCase() + surahNameFromSlug.slice(1);
@@ -68,7 +68,7 @@ export async function generateStaticParams() {
 
 export default async function SurahPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  
+
   // Extract the surah name from the slug
   const surahNameFromSlug = stripSuffix(slug, AUDIO_SURAH_SUFFIX).replace(/^\d+-/, "").replace(/-/g, " ");
   const surahSlugFromUrl = getSurahNameSlug(slug);
@@ -88,9 +88,9 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
       </div>
     );
   }
-  
+
   const surah = surahDoc.data();
-  
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "AudioObject",
@@ -114,7 +114,7 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
           <Link href="/" className="back-link" style={{ marginBottom: "30px", display: "inline-block" }}>
             <i className="fas fa-arrow-left"></i> Back to all surahs
           </Link>
-          
+
           <div className="surah-detail-card">
             <div className="surah-header">
               <div className="surah-index-big">
@@ -130,7 +130,7 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
                 <span className="badge">{surah.location}</span>
               </div>
             </div>
-            
+
             <div className="surah-actions">
               <div className="action-column">
                 <DownloadAudioButton
@@ -140,7 +140,7 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
                 <span className="translator-label">Translated by Sheikh Ismail Sulaiman Nkata</span>
               </div>
               <div className="action-column">
-                <Link 
+                <Link
                   href={`/read/${createReadSurahSlug(surah.surahIndex, surah.surahName)}`}
                   className="btn-secondary"
                 >
@@ -149,7 +149,20 @@ export default async function SurahPage({ params }: { params: Promise<{ slug: st
                 <span className="translator-label">Translated by Sheikh Abdul Razak Matovu</span>
               </div>
             </div>
+
+            {surah.surahTheme && (
+              <div className="surah-theme-box">
+                <div className="theme-header">
+                  <i className="fas fa-lightbulb"></i>
+                  <span>Surah Theme</span>
+                </div>
+                <div className="theme-content">
+                  {surah.surahTheme}
+                </div>
+              </div>
+            )}
           </div>
+
         </div>
       </main>
       <Footer />
